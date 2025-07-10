@@ -24,6 +24,7 @@ qa_system/
 │   ├── evaluation.py    # Оценка
 │
 ├── notebooks/          # Jupyter-ноутбуки анализа и тестов
+├── step1/, step2/      # Промежуточные шаги решения (подзадачи)
 ├── requirements.txt    # Зависимости
 ├── README.md           # Инструкция (этот файл)
 ```
