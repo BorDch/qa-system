@@ -14,30 +14,18 @@
 
 ```
 qa_system/
-├── app/
-│   ├── main.py               # Точка входа FastAPI
-│   ├── config.py             # Конфигурация
-│   ├── models/
-│   │   ├── retriever.py      # Поисковик (BM25, FAISS и др.)
-│   │   ├── generator.py      # Генерация ответа
-│   │   └── embeddings.py     # Работа с эмбеддингами
-│   ├── services/
-│   │   ├── qa_pipeline.py    # Основной пайплайн
-│   │   └── preprocessing.py  # Подготовка запроса
-│   └── utils/
-│       ├── data_loader.py    # Загрузка и обработка данных
-│       └── metrics.py        # Метрики оценки
-├── data/
-│   ├── raw/                  # Исходные данные (FAQ, регламенты)
-│   ├── processed/            # Обработанные документы
-│   └── embeddings/           # Эмбеддинги
-├── notebooks/                # Jupyter-ноутбуки анализа и тестов
-├── scripts/                  # Скрипты генерации эмбеддингов и индексов
-├── tests/                    # Юнит-тесты
-├── Dockerfile                # Docker-образ (по желанию)
-├── requirements.txt          # Зависимости
-├── README.md                 # Инструкция (этот файл)
-└── .env                      # Конфигурации и ключи
+│
+│── main.py             # Оосновной файл запуска
+│── utils/
+│   ├── load_data.py    # Загрузка и обработка данных
+│   ├── save_load.py    # Сохрнение и загрузка
+│   ├── search.py       # Retrieval-поисковик
+│   ├── generation.py   # Генератор
+│   ├── evaluation.py    # Оценка
+│
+├── notebooks/          # Jupyter-ноутбуки анализа и тестов
+├── requirements.txt    # Зависимости
+├── README.md           # Инструкция (этот файл)
 ```
 
 ---
@@ -70,7 +58,7 @@ qa_system/
 
 ### Этап 5. Развёртывание и вывод
 
-* Реализация FastAPI-сервиса
+* Реализация FastAPI-сервиса (**Gradio**)
 * Документация Swagger/OpenAPI
 * (Опционально) Docker-сборка
 * Финальная презентация: пайплайн, метрики, демонстрация
@@ -79,32 +67,16 @@ qa_system/
 
 ## 🚀 Как запустить
 
-1. Установить зависимости:
+1. Перейти в корень проекта и установить зависимости:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Подготовить данные:
+2. Запустить сервис:
 
 ```bash
-python scripts/generate_embeddings.py
-python scripts/build_index.py
-```
-
-3. Запустить сервис:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-4. Отправить запрос:
-
-```json
-POST /answer
-{
-  "question": "Как изменить график работы ПВЗ?"
-}
+python main.py
 ```
 
 ---
